@@ -13,3 +13,5 @@ api:
     - runas : {{ pillar["system_user"] }}
     - watch:
       - cmd: node
+      - sls: nvm
+    - order: last
