@@ -93,6 +93,46 @@ vagrant up
 ```
 Parse server will be available on `http://192.168.77.10:7070` or `http://127.0.0.1:7070` inside the machine.
 
+## Examples
+
+This will work out-of-the-box only for default setup, if you have changed the keys make sure you change it here as well.
+
+Inside the box:
+
+```shell
+
+# Create a recod
+
+curl -X POST \
+-H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
+-H "Content-Type: application/json" \
+-d '{"instrument": "guitar","playerName":"Peter","why":"'coz me so kul"}' \
+http://localhost:7070/classes/songs
+
+curl -X GET \
+  -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
+  http://localhost:1337/classes/songs
+```
+
+Outside the box:
+
+```shell
+
+# Create a recod
+
+curl -X POST \
+-H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
+-H "Content-Type: application/json" \
+-d '{"instrument": "guitar","playerName":"Peter","why":"coz me so kul"}' \
+http://192.168.77.10:7070/classes/songs
+
+# Get records
+
+curl -X GET \
+  -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
+  http://192.168.77.10:1337/classes/songs
+
+```
 
 
 # License
