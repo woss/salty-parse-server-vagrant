@@ -1,0 +1,19 @@
+{
+  "name": "parse_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "",
+    "start": "pm2 start server.js -i 0 --name \"parse-server\"",
+    "dev": "node server.js",
+    "prestart": "npm install"
+  },
+  "author": "Danijel Maricic <daniel@sevensignals.io>",
+  "license": "MIT + New BSD",
+  "dependencies": {
+    "express": "^4.13.4",
+    "node-env-file": "^0.1.8",
+    "parse-server": "^2.2.9"
+  }
+}
