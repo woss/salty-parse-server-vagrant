@@ -106,7 +106,7 @@ Inside the box:
 curl -X POST \
 -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
 -H "Content-Type: application/json" \
--d '{"instrument": "guitar","playerName":"Peter","why":"'coz me so kul"}' \
+-d '{"instrument": "guitar","playerName":"Peter","why":"coz me so kul"}' \
 http://localhost:7070/classes/songs
 
 curl -X GET \
