@@ -1,7 +1,7 @@
 {
   "name": "parse_server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Just a wrapper for Parse server",
   "main": "server.js",
   "scripts": {
     "test": "",
