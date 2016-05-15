@@ -1,5 +1,5 @@
 base:
-  'dev':
+  '*':
     - base
     - git
     - nodejs
