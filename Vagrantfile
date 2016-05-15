@@ -25,8 +25,11 @@ Vagrant.configure(2) do |config|
   config.vm.provision :salt do |config|
       config.minion_config = "salt/minion.yml"
       config.run_highstate = true
+      config.verbose = true
       config.install_type = "git"
       config.temp_config_dir = "/tmp"
       config.colorize = true
+      config.log_level = "info"
   end
 end
+
