@@ -6,12 +6,12 @@
         - mode: 700
         - template: jinja
 
-api:
-  cmd.wait:
-    - name: npm start
-    - cwd: /srv/api
-    - runas : {{ pillar["system_user"] }}
-    - watch:
-      - cmd: node
-      - sls: nvm
-    - order: last
+# api:
+#   cmd.wait:
+#     - name: npm start
+#     - cwd: /srv/api
+#     - runas : {{ pillar["system_user"] }}
+#     - watch:
+#       - cmd: node
+#       - sls: nvm
+#     - order: last

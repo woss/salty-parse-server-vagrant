@@ -14,3 +14,10 @@ startup install:
     - watch:
       - cmd: pm2
 
+
+{{ pillar["system_user_home"]}}/.pm2/dump.pm2:
+    file.managed:
+        - source: salt://pm2/dump.pm2
+        - user: {{ pillar["system_user"] }}
+        - group: {{ pillar["system_user"] }}
+        - mode: 700
