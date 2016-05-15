@@ -5,9 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "",
-    "start": "pm2 start server.js -i 0 --name \"parse-server\"",
-    "dev": "node server.js",
-    "prestart": "npm install"
+    "start": "pm2 startOrRestart process.json",
+    "prestart": "NODE_ENV=\"production\" npm install"
   },
   "author": "Danijel Maricic <daniel@sevensignals.io>",
   "license": "MIT + New BSD",
