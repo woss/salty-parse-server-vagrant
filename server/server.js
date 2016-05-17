@@ -14,7 +14,6 @@ var api = new ParseServer({
   serverURL: url
 });
 
-// Serve the Parse API on the /parse URL prefix
 app.use('/', api);
 
 app.listen(envs.PORT, function() {
