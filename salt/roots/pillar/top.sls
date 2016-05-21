@@ -2,4 +2,4 @@ base:
   '*':
     - api
     - system
-    - nvm
+    - nodejs
