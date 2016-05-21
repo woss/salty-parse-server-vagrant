@@ -24,13 +24,16 @@ Ready to use [Parse Server](https://github.com/ParsePlatform/parse-server) vagra
 │   └── roots
 │       ├── pillar
 │       │   ├── api.sls
-│       │   ├── nvm.sls
+│       │   ├── nodejs.sls
 │       │   ├── system.sls
 │       │   └── top.sls
-│       └── salt
+│       └── states
 │           ├── api
-│           │   ├── env
-│           │   └── init.sls
+│           │   ├── .env
+│           │   ├── init.sls
+│           │   └── pm2
+│           │       ├── dump.pm2
+│           │       └── init.sls
 │           ├── base
 │           │   ├── bashrc
 │           │   ├── init.sls
@@ -46,16 +49,13 @@ Ready to use [Parse Server](https://github.com/ParsePlatform/parse-server) vagra
 │           │   └── init.sls
 │           ├── ntp
 │           │   └── init.sls
-│           ├── nvm
-│           │   └── init.sls
-│           ├── pm2
-│           │   ├── dump.pm2
-│           │   └── init.sls
 │           └── top.sls
 └── server
     ├── .nvmrc
     ├── package.json
+    ├── process.json
     └── server.js
+
 ```
 
 ## Before running
@@ -111,7 +111,7 @@ http://localhost:7070/classes/songs
 
 curl -X GET \
   -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
-  http://localhost:1337/classes/songs
+  http://localhost:7070/classes/songs
 ```
 
 Outside the box:
@@ -130,7 +130,7 @@ http://192.168.77.10:7070/classes/songs
 
 curl -X GET \
   -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
-  http://192.168.77.10:1337/classes/songs
+  http://192.168.77.10:7070/classes/songs
 
 ```
 
@@ -140,3 +140,11 @@ curl -X GET \
 Short version: MIT + New BSD.
 
 Long version: Read the LICENSE.md -file.
+
+
+
+
+
+salt-call saltutil.sync_all
+salt-call state.apply test=True
+salt-call state.highstate --retcode-passthrough  --log-level=info --force-color
