@@ -102,7 +102,7 @@
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "iso_checksum": "f90e4d28fa377669b2db16cbcb451fcb9a89d2460e3645993e30e137ac37d284",
+    "iso_checksum": "9ed9ffb5d89ab8cca834afce354daa70a21dcb410f58287d6316259ff89758f5",
     "iso_checksum_type": "sha256",
     "iso_name": "CentOS-7-x86_64-NetInstall-1511.iso",
     "ks_path": "centos-7.2/ks.cfg",
