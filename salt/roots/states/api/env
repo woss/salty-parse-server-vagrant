@@ -7,5 +7,3 @@ PARSE_PROTOCOL="{{ pillar["api"]["protocol"] }}"
 PARSE_MONGODB_HOST="{{ pillar["api"]["mongodb_host"] }}"
 PARSE_MONGODB_PORT={{ pillar["api"]["mongodb_port"] }}
 PARSE_MONGODB_DB="{{ pillar["api"]["mongodb_db"] }}"
-
-sdasdv dsdasda
