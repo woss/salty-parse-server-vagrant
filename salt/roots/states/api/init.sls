@@ -2,7 +2,6 @@ include:
   - nodejs
   - api.pm2
 
-
 {{ pillar["api"]["home"] }}/.env:
     file.managed:
         - source: salt://api/env
