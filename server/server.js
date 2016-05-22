@@ -4,18 +4,18 @@ var env = require('node-env-file');
 var app = express();
 
 env(__dirname + '/.env');
+
 var envs = process.env;
-var url = envs.PROTOCOL + '://' + envs.HOST + ':' + envs.PORT
+var url = envs.PARSE_PROTOCOL + '://' + envs.PARSE_HOST + ':' + envs.PARSE_PORT
+var mongodbURI = 'mongodb://' + envs.PARSE_MONGODB_HOST + ':' + envs.PARSE_MONGODB_PORT + '/' + envs.PARSE_MONGODB_DB
 var api = new ParseServer({
-  databaseURI: 'mongodb://' + envs.MONGODB_HOST + ':' + envs.MONGODB_PORT + '/' + envs.MONGODB_DB,
-  appId: envs.APP_KEY,
-  masterKey: envs.MASTER_KEY, // Keep this key secret!
-  fileKey: envs.FILE_KEY,
+  databaseURI: mongodbURI,
+  appId: envs.PARSE_APP_KEY,
+  masterKey: envs.PARSE_MASTER_KEY, // Keep this key secret!
+  fileKey: envs.PARSE_FILE_KEY,
   serverURL: url
 });
 
 app.use('/', api);
 
-app.listen(envs.PORT, function() {
-  console.log('parse is running on ' + url);
-});
+app.listen(envs.PARSE_PORT);
