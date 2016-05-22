@@ -1,0 +1,11 @@
+PARSE_APP_KEY="{{ pillar["api"]["app_key"] }}"
+PARSE_MASTER_KEY="{{ pillar["api"]["master_key"] }}"
+PARSE_FILE_KEY="{{ pillar["api"]["file_key"] }}"
+PARSE_HOST="{{ pillar["api"]["host"] }}"
+PARSE_PORT={{ pillar["api"]["port"] }}
+PARSE_PROTOCOL="{{ pillar["api"]["protocol"] }}"
+PARSE_MONGODB_HOST="{{ pillar["api"]["mongodb_host"] }}"
+PARSE_MONGODB_PORT={{ pillar["api"]["mongodb_port"] }}
+PARSE_MONGODB_DB="{{ pillar["api"]["mongodb_db"] }}"
+
+sdasdv dsdasda

@@ -5,7 +5,7 @@ include:
 
 {{ pillar["api"]["home"] }}/.env:
     file.managed:
-        - source: salt://api/.env
+        - source: salt://api/env
         - user: {{ pillar["system_user"] }}
         - group: {{ pillar["system_user"] }}
         - mode: 700
