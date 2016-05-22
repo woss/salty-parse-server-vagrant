@@ -134,17 +134,34 @@ curl -X GET \
 
 ```
 
+## Salt-y commands - for dev only
+
+```
+# sync it
+salt-call saltutil.sync_all
+
+# test it
+salt-call state.apply test=True
+
+# apply it ( OR this can be ran right away :) )
+salt-call state.highstate --retcode-passthrough  --log-level=info --force-color
+
+```
+
+## Packer related commands
+
+**NOTE** Not working yet!!!
+
+Run from root of the project
+
+```
+packer validate packer/centos-7.2-x86_64.json
+packer build packer/centos-7.2-x86_64.json
+
+```
 
 # License
 
 Short version: MIT + New BSD.
 
 Long version: Read the LICENSE.md -file.
-
-
-
-
-
-salt-call saltutil.sync_all
-salt-call state.apply test=True
-salt-call state.highstate --retcode-passthrough  --log-level=info --force-color
