@@ -3,3 +3,5 @@ server/node_modules
 .env
 npm-debug.log
 .idea
+packer/packer_cache
+packer_cache
