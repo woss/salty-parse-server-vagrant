@@ -35,8 +35,8 @@ nginx:
   file.directory:
     - user: nginx
     - group: nginx
-      - mode: 755
-      - makedirs: True
+    - mode: 755
+    - makedirs: True
 {% endfor %}
 
 {% for path in '/etc/nginx/conf.d/', '/etc/nginx/sites-enabled/default' %}
@@ -47,8 +47,8 @@ nginx:
 /etc/nginx/nginx.conf:
  file.managed:
     - source: salt://nginx/nginx.conf
-      - require:
-        - pkg: nginx
+    - require:
+      - pkg: nginx
 
 /etc/nginx/sites-available/{{ pillar['api']['hostname'] }}.conf:
   file.managed:
