@@ -52,7 +52,7 @@ nginx:
 
 /etc/nginx/sites-available/{{ pillar['api']['hostname'] }}.conf:
   file.managed:
-    - source: salt://nginx/api-server
+    - source: salt://nginx/api-server.conf
     - template: jinja
 
 api-symlink:
