@@ -18,6 +18,7 @@ nginx:
         - pkg: nginx
     - watch:
         - file: /etc/nginx/nginx.conf
+        - file: /etc/nginx/sites-available/{{ pillar['api']['hostname'] }}.conf
 
 # Temporary fix to work around the bug mentioned above
 #/var/www:

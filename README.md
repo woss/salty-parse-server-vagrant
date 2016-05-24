@@ -172,7 +172,12 @@ salt-call state.apply test=True
 # apply it ( OR this can be ran right away :) )
 salt-call state.highstate --retcode-passthrough  --log-level=info --force-color
 
+# apply only one state
+salt-call state.apply nginx
+
 ```
+
+Maybe implement this https://github.com/saltstack-formulas/nginx-formula
 
 ## Packer related commands
 
@@ -184,6 +189,15 @@ Run from root of the project
 packer validate packer/centos-7.2-x86_64.json
 packer build packer/centos-7.2-x86_64.json
 
+```
+
+## Issues
+
+If server is not available on specified IP, either reload the box `vagrant reload` or restart nginx:
+
+```
+$ vagrant ssh
+$ sudo systemctl restart nginx
 ```
 
 # License
