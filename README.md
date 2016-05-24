@@ -12,25 +12,49 @@ Ready to use [Parse Server](https://github.com/ParsePlatform/parse-server) vagra
 
 ## Structure:
 
-```
-
+```shell
+$ tree -a -I 'node_modules|.vagrant|logs|.git|.idea|.DS_Store'
+.
 ├── .editorconfig
 ├── .gitignore
 ├── LICENSE.md
 ├── README.md
 ├── Vagrantfile
+├── packer
+│   ├── centos-7.2-x86_64.json
+│   ├── floppy
+│   │   └── dummy_metadata.json
+│   ├── http
+│   │   └── centos-7.2
+│   │       └── ks.cfg
+│   ├── packer_cache
+│   └── scripts
+│       ├── centos
+│       │   ├── cleanup.sh
+│       │   └── networking.sh
+│       └── common
+│           ├── metadata.sh
+│           ├── minimize.sh
+│           ├── shutdown.sh
+│           ├── sshd.sh
+│           ├── sudoers.sh
+│           ├── vagrant.sh
+│           └── vmtools.sh
 ├── salt
 │   ├── minion.yml
 │   └── roots
 │       ├── pillar
 │       │   ├── api.sls
-│       │   ├── nvm.sls
+│       │   ├── nodejs.sls
 │       │   ├── system.sls
 │       │   └── top.sls
-│       └── salt
+│       └── states
 │           ├── api
 │           │   ├── env
-│           │   └── init.sls
+│           │   ├── init.sls
+│           │   └── pm2
+│           │       ├── dump.pm2
+│           │       └── init.sls
 │           ├── base
 │           │   ├── bashrc
 │           │   ├── init.sls
@@ -40,21 +64,23 @@ Ready to use [Parse Server](https://github.com/ParsePlatform/parse-server) vagra
 │           ├── mongodb
 │           │   ├── init.sls
 │           │   └── mongod.conf
+│           ├── nginx
+│           │   ├── api-server
+│           │   ├── init.sls
+│           │   └── nginx.conf
 │           ├── ngrok
 │           │   └── init.sls
 │           ├── nodejs
 │           │   └── init.sls
 │           ├── ntp
 │           │   └── init.sls
-│           ├── nvm
-│           │   └── init.sls
-│           ├── pm2
-│           │   ├── dump.pm2
-│           │   └── init.sls
 │           └── top.sls
 └── server
+    ├── .env
     ├── .nvmrc
+    ├── lockdown.json
     ├── package.json
+    ├── process.json
     └── server.js
 ```
 
@@ -91,7 +117,7 @@ git clone https://github.com/7Signals/salty-parse-server-vagrant.git
 cd salty-parse-server-vagrant
 vagrant up
 ```
-Parse server will be available on `http://192.168.77.10:7070` or `http://127.0.0.1:7070` inside the machine.
+Parse server will be available on `http://192.168.77.10` or `http://127.0.0.1` inside the machine.
 
 ## Examples
 
@@ -107,11 +133,11 @@ curl -X POST \
 -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
 -H "Content-Type: application/json" \
 -d '{"instrument": "guitar","playerName":"Peter","why":"coz me so kul"}' \
-http://localhost:7070/classes/songs
+http://localhost/classes/songs
 
 curl -X GET \
   -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
-  http://localhost:1337/classes/songs
+  http://localhost/classes/songs
 ```
 
 Outside the box:
@@ -124,16 +150,55 @@ curl -X POST \
 -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
 -H "Content-Type: application/json" \
 -d '{"instrument": "guitar","playerName":"Peter","why":"coz me so kul"}' \
-http://192.168.77.10:7070/classes/songs
+http://192.168.77.10/classes/songs
 
 # Get records
 
 curl -X GET \
   -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
-  http://192.168.77.10:1337/classes/songs
+  http://192.168.77.10/classes/songs
 
 ```
 
+## Salt-y commands - for dev only
+
+```
+# sync it
+salt-call saltutil.sync_all
+
+# test it
+salt-call state.apply test=True
+
+# apply it ( OR this can be ran right away :) )
+salt-call state.highstate --retcode-passthrough  --log-level=info --force-color
+
+# apply only one state
+salt-call state.apply nginx
+
+```
+
+Maybe implement this https://github.com/saltstack-formulas/nginx-formula
+
+## Packer related commands
+
+**NOTE** Not working yet!!!
+
+Run from root of the project
+
+```
+packer validate packer/centos-7.2-x86_64.json
+packer build packer/centos-7.2-x86_64.json
+
+```
+
+## Issues
+
+If server is not available on specified IP, either reload the box `vagrant reload` or restart nginx:
+
+```
+$ vagrant ssh
+$ sudo systemctl restart nginx
+```
 
 # License
 

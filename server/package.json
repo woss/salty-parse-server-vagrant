@@ -6,12 +6,15 @@
   "scripts": {
     "test": "",
     "start": "pm2 startOrRestart process.json",
-    "prestart": "NODE_ENV=\"production\" npm install"
+    "preinstall": "lockdown",
+    "prestart": "NODE_ENV=\"production\" npm install",
+    "unlock": "lockdown-relock"
   },
   "author": "Danijel Maricic <daniel@sevensignals.io>",
   "license": "MIT + New BSD",
   "dependencies": {
     "express": "^4.13.4",
+    "lockdown": "git+https://github.com/woss/npm-lockdown.git",
     "node-env-file": "^0.1.8",
     "parse-server": "^2.2.9"
   }

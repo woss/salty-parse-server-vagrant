@@ -1,7 +1,7 @@
 file_client: local
 file_roots:
   base:
-    - /srv/salt/salt
+    - /srv/salt/states
 
 pillar_roots:
   base:

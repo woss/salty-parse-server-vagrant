@@ -1,5 +1,6 @@
 api:
   home: /srv/api
+  hostname: 'parse-server.dev'
   app_key: "ashdgvon12682762n13921879"
   master_key: "89d22c0f261be72a88c3a7e100412f36"
   file_key: "89d22c0f261be72a88c3a7e100412f36ashdgvon12682762n13921879"

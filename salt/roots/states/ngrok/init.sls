@@ -1,0 +1,2 @@
+ngrok:
+  npm.installed

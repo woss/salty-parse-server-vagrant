@@ -1,5 +1,6 @@
 .vagrant
 server/node_modules
-.env
+server/.env
 npm-debug.log
 .idea
+packer_cache

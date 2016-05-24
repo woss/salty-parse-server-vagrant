@@ -1,9 +1,0 @@
-APP_KEY="{{ pillar["api"]["app_key"] }}""
-MASTER_KEY="{{ pillar["api"]["master_key"] }}"
-FILE_KEY="{{ pillar["api"]["file_key"] }}"
-HOST="{{ pillar["api"]["host"] }}"
-PORT={{ pillar["api"]["port"] }}
-PROTOCOL="{{ pillar["api"]["protocol"] }}"
-MONGODB_HOST="{{ pillar["api"]["mongodb_host"] }}"
-MONGODB_PORT={{ pillar["api"]["mongodb_port"] }}
-MONGODB_DB="{{ pillar["api"]["mongodb_db"] }}"

@@ -1,5 +1,6 @@
 include:
   - base.sanity
+  - ntp
 
 {{ pillar["system_user_home"] }}/.bashrc:
     file.managed:
