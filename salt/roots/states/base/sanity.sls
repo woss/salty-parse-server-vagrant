@@ -4,7 +4,6 @@ base_sanity:
       - bash-completion
       - bzip2
       - curl
-      - deltarpm
       - gcc
       - gcc-c++
       - make

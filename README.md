@@ -12,13 +12,34 @@ Ready to use [Parse Server](https://github.com/ParsePlatform/parse-server) vagra
 
 ## Structure:
 
-```
-
+```shell
+$ tree -a -I 'node_modules|.vagrant|logs|.git|.idea|.DS_Store'
+.
 ├── .editorconfig
 ├── .gitignore
 ├── LICENSE.md
 ├── README.md
 ├── Vagrantfile
+├── packer
+│   ├── centos-7.2-x86_64.json
+│   ├── floppy
+│   │   └── dummy_metadata.json
+│   ├── http
+│   │   └── centos-7.2
+│   │       └── ks.cfg
+│   ├── packer_cache
+│   └── scripts
+│       ├── centos
+│       │   ├── cleanup.sh
+│       │   └── networking.sh
+│       └── common
+│           ├── metadata.sh
+│           ├── minimize.sh
+│           ├── shutdown.sh
+│           ├── sshd.sh
+│           ├── sudoers.sh
+│           ├── vagrant.sh
+│           └── vmtools.sh
 ├── salt
 │   ├── minion.yml
 │   └── roots
@@ -29,7 +50,7 @@ Ready to use [Parse Server](https://github.com/ParsePlatform/parse-server) vagra
 │       │   └── top.sls
 │       └── states
 │           ├── api
-│           │   ├── .env
+│           │   ├── env
 │           │   ├── init.sls
 │           │   └── pm2
 │           │       ├── dump.pm2
@@ -43,6 +64,10 @@ Ready to use [Parse Server](https://github.com/ParsePlatform/parse-server) vagra
 │           ├── mongodb
 │           │   ├── init.sls
 │           │   └── mongod.conf
+│           ├── nginx
+│           │   ├── api-server
+│           │   ├── init.sls
+│           │   └── nginx.conf
 │           ├── ngrok
 │           │   └── init.sls
 │           ├── nodejs
@@ -51,11 +76,12 @@ Ready to use [Parse Server](https://github.com/ParsePlatform/parse-server) vagra
 │           │   └── init.sls
 │           └── top.sls
 └── server
+    ├── .env
     ├── .nvmrc
+    ├── lockdown.json
     ├── package.json
     ├── process.json
     └── server.js
-
 ```
 
 ## Before running
@@ -91,7 +117,7 @@ git clone https://github.com/7Signals/salty-parse-server-vagrant.git
 cd salty-parse-server-vagrant
 vagrant up
 ```
-Parse server will be available on `http://192.168.77.10:7070` or `http://127.0.0.1:7070` inside the machine.
+Parse server will be available on `http://192.168.77.10` or `http://127.0.0.1` inside the machine.
 
 ## Examples
 
@@ -107,11 +133,11 @@ curl -X POST \
 -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
 -H "Content-Type: application/json" \
 -d '{"instrument": "guitar","playerName":"Peter","why":"coz me so kul"}' \
-http://localhost:7070/classes/songs
+http://localhost/classes/songs
 
 curl -X GET \
   -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
-  http://localhost:7070/classes/songs
+  http://localhost/classes/songs
 ```
 
 Outside the box:
@@ -124,13 +150,13 @@ curl -X POST \
 -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
 -H "Content-Type: application/json" \
 -d '{"instrument": "guitar","playerName":"Peter","why":"coz me so kul"}' \
-http://192.168.77.10:7070/classes/songs
+http://192.168.77.10/classes/songs
 
 # Get records
 
 curl -X GET \
   -H "X-Parse-Application-Id: ashdgvon12682762n13921879" \
-  http://192.168.77.10:7070/classes/songs
+  http://192.168.77.10/classes/songs
 
 ```
 

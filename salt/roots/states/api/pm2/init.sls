@@ -15,6 +15,6 @@ pm2-systemctl:
 pm2-start-service:
   cmd.run:
     - name: systemctl start pm2
-    - require_in:
-      - cmd: api-create-dump
+    - require:
+      - cmd: api-save
 
